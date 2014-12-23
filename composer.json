@@ -1,0 +1,19 @@
+{
+    "name": "emmetog/proxy-pool",
+    "description": "Manages pools of proxies",
+    "license": "GPL v2",
+    "authors": [
+        {
+            "name": "Emmet O'Grady",
+            "email": "emmet789@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {"Emmetog\\ProxyPool\\": "src/Emmetog/ProxyPool/"}
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~4.4"
+    }
+}
