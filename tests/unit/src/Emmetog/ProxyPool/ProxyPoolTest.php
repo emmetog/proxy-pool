@@ -108,7 +108,7 @@ class ProxyPoolTest extends PHPUnit_Framework_TestCase
      */
     private function getSampleProxy()
     {
-        return new Proxy('127.0.0.1');
+        return new Proxy('127.0.0.1', '8080');
     }
 }
  

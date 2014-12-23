@@ -6,13 +6,18 @@ use PHPUnit_Framework_TestCase;
 
 class ProxyTest extends PHPUnit_Framework_TestCase {
 
-
-
     public function testGetIp()
     {
         $proxy = $this->getSampleProxy();
 
         $this->assertEquals('127.0.0.1', $proxy->getIp());
+    }
+
+    public function testGetPort()
+    {
+        $proxy = $this->getSampleProxy();
+
+        $this->assertEquals('8080', $proxy->getPort());
     }
 
     /*
@@ -21,7 +26,7 @@ class ProxyTest extends PHPUnit_Framework_TestCase {
 
     private function getSampleProxy()
     {
-        return new Proxy('127.0.0.1');
+        return new Proxy('127.0.0.1', '8080');
     }
 
 }
