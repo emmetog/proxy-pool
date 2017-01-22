@@ -10,6 +10,11 @@ class ProxyUse {
     private $idProxyUse;
 
     /**
+     * @var string
+     */
+    private $idProxy;
+
+    /**
      * @var \DateTime
      */
     private $time;
@@ -19,9 +24,10 @@ class ProxyUse {
      */
     private $succeeded;
 
-    public function __construct($idProxyUse, \DateTime $time, $succeeded)
+    public function __construct($idProxyUse, $idProxy, \DateTime $time, $succeeded)
     {
         $this->idProxyUse;
+        $this->idProxy;
         $this->time = $time;
         $this->succeeded = $succeeded;
     }
@@ -32,6 +38,14 @@ class ProxyUse {
     public function getIdProxyUse()
     {
         return $this->idProxyUse;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdProxy()
+    {
+        return $this->idProxy;
     }
 
     /**
