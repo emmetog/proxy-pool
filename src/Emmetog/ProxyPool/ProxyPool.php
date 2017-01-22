@@ -4,6 +4,7 @@ namespace Emmetog\ProxyPool;
 
 use Emmetog\ProxyPool\Entity\Proxy;
 use Emmetog\ProxyPool\Entity\ProxyUse;
+use Emmetog\ProxyPool\Exception\NoAliveProxiesException;
 use Emmetog\ProxyPool\ProxySelector\ProxySelectorInterface;
 use Emmetog\ProxyPool\Repository\ProxyRepositoryInterface;
 
@@ -28,6 +29,11 @@ class ProxyPool {
     public function getBestProxyFromPool()
     {
         $aliveProxies = $this->proxyRepository->findAllAlive();
+
+        if(empty($aliveProxies))
+        {
+            throw new NoAliveProxiesException();
+        }
 
         return $this->proxySelector->selectBestProxy($aliveProxies);
     }
