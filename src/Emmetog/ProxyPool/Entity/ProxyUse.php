@@ -24,12 +24,18 @@ class ProxyUse {
      */
     private $succeeded;
 
-    public function __construct($idProxyUse, $idProxy, \DateTime $time, $succeeded)
+    /**
+     * @var integer
+     */
+    private $secondsTaken;
+
+    public function __construct($idProxyUse, $idProxy, \DateTime $time, $succeeded, $secondsTaken)
     {
         $this->idProxyUse;
         $this->idProxy;
         $this->time = $time;
         $this->succeeded = $succeeded;
+        $this->secondsTaken = $secondsTaken;
     }
 
     /**
@@ -62,5 +68,13 @@ class ProxyUse {
     public function isSucceeded()
     {
         return $this->succeeded;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getSecondsTaken()
+    {
+        return $this->secondsTaken;
     }
 }

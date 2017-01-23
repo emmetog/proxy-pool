@@ -38,24 +38,30 @@ class ProxyPool {
         return $this->proxySelector->selectBestProxy($aliveProxies);
     }
 
-    public function incrementFailedRequestForProxy(Proxy $proxy)
+    public function incrementFailedRequestForProxy(Proxy $proxy, $secondsTaken)
     {
-        $this->insertNewProxyUse(false);
+        $this->insertNewProxyUse($proxy, false, $secondsTaken);
     }
 
-    public function incrementSuccessfulRequestForProxy(Proxy $proxy)
+    public function incrementSuccessfulRequestForProxy(Proxy $proxy, $secondsTaken)
     {
-        $this->insertNewProxyUse(true);
+        $this->insertNewProxyUse($proxy, true, $secondsTaken);
     }
 
     /**
      * @param $succeeded
      */
-    private function insertNewProxyUse($succeeded)
+    private function insertNewProxyUse(Proxy $proxy, $succeeded, $secondsTaken)
     {
         $proxyUseId = $this->proxyRepository->getNextIdProxyUse();
 
-        $proxyUse = new ProxyUse($proxyUseId, new \DateTime(), $succeeded);
+        $proxyUse = new ProxyUse(
+            $proxyUseId,
+            $proxy->getIdProxy(),
+            new \DateTime(),
+            $succeeded,
+            $secondsTaken
+        );
 
         $this->proxyRepository->insertUse($proxyUse);
     }
