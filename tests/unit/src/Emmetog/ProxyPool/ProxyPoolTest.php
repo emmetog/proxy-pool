@@ -3,6 +3,7 @@
 namespace Emmetog\ProxyPool;
 
 use Emmetog\ProxyPool\Entity\Proxy;
+use Emmetog\ProxyPool\ProxyFilter\NoProxyFilter;
 use Emmetog\ProxyPool\ProxySelector\FirstProxySelector;
 use Emmetog\ProxyPool\Repository\ProxyRepositoryInterface;
 use PHPUnit_Framework_TestCase;
@@ -22,8 +23,9 @@ class ProxyPoolTest extends PHPUnit_Framework_TestCase
         $proxyRepositoryProphecy = $this->whenRepoReturnsAliveProxy($this->getSampleProxy());
 
         $proxySelector = new FirstProxySelector();
+        $proxyFilter = new NoProxyFilter();
 
-        $this->proxyPool = new ProxyPool($proxyRepositoryProphecy->reveal(), $proxySelector);
+        $this->proxyPool = new ProxyPool($proxyRepositoryProphecy->reveal(), $proxyFilter, $proxySelector);
         $this->proxyPool->getBestProxyFromPool();
     }
 
@@ -34,8 +36,9 @@ class ProxyPoolTest extends PHPUnit_Framework_TestCase
         $proxyRepositoryProphecy = $this->whenRepoReturnsAliveProxy($aliveProxy);
 
         $proxySelector = new FirstProxySelector();
+        $proxyFilter = new NoProxyFilter();
 
-        $this->proxyPool = new ProxyPool($proxyRepositoryProphecy->reveal(), $proxySelector);
+        $this->proxyPool = new ProxyPool($proxyRepositoryProphecy->reveal(), $proxyFilter, $proxySelector);
 
         $returnedProxy = $this->proxyPool->getBestProxyFromPool();
 
