@@ -1,8 +1,9 @@
 <?php
 
-namespace Emmetog\ProxyPool\ProxySelector;
+namespace Emmetog\ProxyPool\ProxyListSelector;
 
 use Emmetog\ProxyPool\Entity\Proxy;
+use Emmetog\ProxyPool\ProxyListSorter\NoSorter;
 
 class FirstProxySelectorTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,8 +19,8 @@ class FirstProxySelectorTest extends \PHPUnit_Framework_TestCase
             new Proxy('test_proxy_id_7', '10.0.0.7', 10000),
         ];
 
-        $proxySelector = new FirstProxySelector();
+        $proxySelector = new NoSorter();
 
-        $this->assertEquals(new Proxy('test_proxy_id_1', '10.0.0.1', 10000), $proxySelector->selectBestProxy($sampleProxies));
+        $this->assertEquals($sampleProxies, $proxySelector->sortProxies($sampleProxies));
     }
 }

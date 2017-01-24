@@ -5,8 +5,8 @@ namespace Emmetog\ProxyPool;
 use Emmetog\ProxyPool\Entity\Proxy;
 use Emmetog\ProxyPool\Entity\ProxyUse;
 use Emmetog\ProxyPool\Exception\NoAliveProxiesException;
-use Emmetog\ProxyPool\ProxyFilter\ProxyFilterInterface;
-use Emmetog\ProxyPool\ProxySelector\ProxySelectorInterface;
+use Emmetog\ProxyPool\ProxyListFilter\ProxyListFilterInterface;
+use Emmetog\ProxyPool\ProxyListSorter\ProxyListSorterInterface;
 use Emmetog\ProxyPool\Repository\ProxyRepositoryInterface;
 
 class ProxyPool
@@ -18,23 +18,23 @@ class ProxyPool
     private $proxyRepository;
 
     /**
-     * @var ProxyFilterInterface
+     * @var ProxyListFilterInterface
      */
     private $proxyFilter;
 
     /**
-     * @var ProxySelectorInterface
+     * @var ProxyListSorterInterface
      */
-    private $proxySelector;
+    private $proxySorter;
 
     public function __construct(
         ProxyRepositoryInterface $proxyRepository,
-        ProxyFilterInterface $proxyFilter,
-        ProxySelectorInterface $proxySelector
+        ProxyListFilterInterface $proxyFilter,
+        ProxyListSorterInterface $proxySorter
     ) {
         $this->proxyRepository = $proxyRepository;
         $this->proxyFilter = $proxyFilter;
-        $this->proxySelector = $proxySelector;
+        $this->proxySorter = $proxySorter;
     }
 
     public function getBestProxyFromPool()
@@ -46,8 +46,10 @@ class ProxyPool
         }
 
         $filteredProxies = $this->proxyFilter->filterProxies($aliveProxies);
+        $sortedProxies = $this->proxySorter->sortProxies($filteredProxies);
 
-        return $this->proxySelector->selectBestProxy($filteredProxies);
+        return array_shift($sortedProxies);
+
     }
 
     public function incrementFailedRequestForProxy(Proxy $proxy, $secondsTaken)

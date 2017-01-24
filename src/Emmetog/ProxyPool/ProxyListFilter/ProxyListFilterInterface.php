@@ -1,10 +1,10 @@
 <?php
 
-namespace Emmetog\ProxyPool\ProxyFilter;
+namespace Emmetog\ProxyPool\ProxyListFilter;
 
 use Emmetog\ProxyPool\Entity\Proxy;
 
-interface ProxyFilterInterface
+interface ProxyListFilterInterface
 {
     /**
      * @param Proxy[] $proxies

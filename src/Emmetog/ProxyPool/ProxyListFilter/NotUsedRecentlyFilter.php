@@ -1,11 +1,11 @@
 <?php
 
-namespace Emmetog\ProxyPool\ProxyFilter;
+namespace Emmetog\ProxyPool\ProxyListFilter;
 
 use Emmetog\ProxyPool\Entity\Proxy;
 use Emmetog\ProxyPool\Entity\ProxyUse;
 
-class NotUsedRecentlyProxyFilter implements ProxyFilterInterface
+class NotUsedRecentlyFilter implements ProxyListFilterInterface
 {
     /**
      * Proxies used less than $limit seconds ago are discarded.

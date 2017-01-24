@@ -1,13 +1,13 @@
 <?php
 
-namespace Emmetog\ProxyPool\ProxyFilter;
+namespace Emmetog\ProxyPool\ProxyListFilter;
 
 use Emmetog\ProxyPool\Entity\Proxy;
 
 /**
  * This simple filter doesn't filter anything, it returns all proxies.
  */
-class NoProxyFilter implements ProxyFilterInterface
+class NoFilter implements ProxyListFilterInterface
 {
 
     /**

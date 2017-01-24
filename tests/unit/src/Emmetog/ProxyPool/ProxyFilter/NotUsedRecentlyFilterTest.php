@@ -1,11 +1,11 @@
 <?php
 
-namespace Emmetog\ProxyPool\ProxyFilter;
+namespace Emmetog\ProxyPool\ProxyListFilter;
 
 use Emmetog\ProxyPool\Entity\Proxy;
 use Emmetog\ProxyPool\Entity\ProxyUse;
 
-class NotUsedRecentlyProxyFilterTest extends \PHPUnit_Framework_TestCase
+class NotUsedRecentlyFilterTest extends \PHPUnit_Framework_TestCase
 {
     public function testFilterProxiesRemovesAllProxiesWhenAllRecentlyUsed()
     {
@@ -13,7 +13,7 @@ class NotUsedRecentlyProxyFilterTest extends \PHPUnit_Framework_TestCase
 
         $threeHours = 3600 * 3;
 
-        $filter = new NotUsedRecentlyProxyFilter($threeHours);
+        $filter = new NotUsedRecentlyFilter($threeHours);
 
         $filteredProxies = $filter->filterProxies($proxies);
 
