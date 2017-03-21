@@ -37,6 +37,9 @@ class ProxyPool
         $this->proxySorter = $proxySorter;
     }
 
+    /**
+     * @return Proxy
+     */
     public function getBestProxyFromPool()
     {
         $aliveProxies = $this->proxyRepository->findAllAlive();
