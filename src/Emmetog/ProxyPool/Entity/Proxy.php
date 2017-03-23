@@ -61,4 +61,18 @@ class Proxy
     {
         return $this->uses;
     }
+
+    public function countSuccessfulUses()
+    {
+        $successCount = 0;
+
+        foreach ($this->getUses() as $proxyUse) {
+            if($proxyUse->isSucceeded())
+            {
+                $successCount++;
+            }
+        }
+
+        return $successCount;
+    }
 }

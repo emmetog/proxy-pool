@@ -5,7 +5,7 @@ namespace Emmetog\ProxyPool\ProxyListSelector;
 use Emmetog\ProxyPool\Entity\Proxy;
 use Emmetog\ProxyPool\ProxyListSorter\NoSorter;
 
-class FirstProxySelectorTest extends \PHPUnit_Framework_TestCase
+class NoSorterTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetBestProxy()
     {
